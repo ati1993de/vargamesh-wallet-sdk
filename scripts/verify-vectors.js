@@ -1,0 +1,7 @@
+import fs from 'node:fs';import { VargaMeshKey, createSpend, bytesToHex, signDigest } from '../src/index.js';import { sha256 } from '../src/hash.js';
+const key=VargaMeshKey.fromPrivateHex('0000000000000000000000000000000000000000000000000000000000000001');
+const key2=VargaMeshKey.fromPrivateHex('0000000000000000000000000000000000000000000000000000000000000002');
+const h=await sha256(new TextEncoder().encode('VargaMesh SDK signing test'));const sig=await signDigest(h,key.privateKey);
+const tx=await createSpend({utxos:[{txid:'11'.repeat(32),vout:1,valueSats:100000000n}],destination:await key2.address(),amountSats:25000000n,feeRateSatVb:1n,key});
+const vectors={network:'mainnet',key:{private_key_hex:key.privateHex(),compressed_public_key_hex:bytesToHex(key.publicKey()),address:await key.address(),wif:await key.wif()},signature:{message:'VargaMesh SDK signing test',sha256_hex:bytesToHex(h),der_hex:bytesToHex(sig.der)},transaction:{input:{txid:'11'.repeat(32),vout:1,value_sats:'100000000'},destination:await key2.address(),amount_sats:'25000000',fee_sats:tx.feeSats.toString(),change_sats:tx.changeSats.toString(),raw_hex:tx.rawHex,txid:tx.txid,wtxid:tx.wtxid,sighash_hex:tx.signatures[0].sighashHex,signature_der_hex:tx.signatures[0].derHex}};
+fs.writeFileSync(new URL('../test-vectors/wallet-vectors.json',import.meta.url),JSON.stringify(vectors,null,2)+'\n');console.log(JSON.stringify(vectors,null,2));

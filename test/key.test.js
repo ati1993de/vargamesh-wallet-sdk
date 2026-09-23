@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import { VargaMeshKey, isValidAddress, bytesToHex } from '../src/index.js';
+const PRIV='0000000000000000000000000000000000000000000000000000000000000001';
+test('deterministic VMESH key/address/WIF vector',async()=>{const k=VargaMeshKey.fromPrivateHex(PRIV);assert.equal(bytesToHex(k.publicKey()),'0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798');assert.equal(await k.address(),'vm1qw508d6qejxtdg4y5r3zarvary0c5xw7kr9qdyv');assert.equal(await k.wif(),'V7AodfTvGD589KWx5PzgG4yYHZAwcWX7vwMmKJpzHvCEWPqRLj38');assert.equal((await VargaMeshKey.fromWif(await k.wif())).privateHex(),PRIV);assert.equal(await isValidAddress(await k.address()),true);assert.equal(await isValidAddress('bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kygt080'),false);});

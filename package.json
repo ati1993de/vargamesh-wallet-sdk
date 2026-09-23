@@ -1,0 +1,44 @@
+{
+  "name": "@vargamesh/wallet-sdk",
+  "version": "0.1.0-alpha.1",
+  "description": "Reference wallet integration SDK for the VargaMesh (VMESH) mainnet",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src",
+    "docs",
+    "examples",
+    "test-vectors",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "verify:vectors": "node scripts/verify-vectors.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "vargamesh",
+    "vmesh",
+    "wallet",
+    "utxo",
+    "segwit",
+    "secp256k1"
+  ],
+  "license": "MIT",
+  "types": "./src/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ati1993de/vargamesh-wallet-sdk.git"
+  },
+  "homepage": "https://vargacoin.com/",
+  "bugs": {
+    "url": "https://github.com/ati1993de/vargamesh-wallet-sdk/issues"
+  }
+}
