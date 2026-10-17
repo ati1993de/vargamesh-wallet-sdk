@@ -11,7 +11,7 @@ export class VargaMeshRpcClient {
 }
 
 export class VargaMeshPublicApi {
-  constructor(baseUrl='https://vargacoin.com/api/v1'){this.baseUrl=baseUrl.replace(/\/$/,'');}
+  constructor(baseUrl='https://vargamesh.com/api/v1'){this.baseUrl=baseUrl.replace(/\/$/,'');}
   async request(path,options={}){const r=await fetch(this.baseUrl+path,{cache:'no-store',...options,headers:{accept:'application/json',...(options.body?{'content-type':'application/json'}:{}),...(options.headers||{})}});const j=await r.json();if(!r.ok)throw new Error(j?.error||`API HTTP ${r.status}`);return j;}
   status(){return this.request('/status');}
   config(){return this.request('/config');}
