@@ -54,7 +54,7 @@ npm run verify:vectors
 
 ## UTXO spend safety (breaking alpha change)
 
-Spending now requires an independently verified \`spendable: true\` annotation for each input. Protected/locked/VNS-anchor outpoints are excluded from automatic and manual coin selection. See [UTXO safety](docs/UTXO-SAFETY.md). The SDK cannot classify VNS anchors by itself; wallet clients must verify the VNS ownership registry before marking an input spendable.
+Spending now requires an independently verified `spendable: true` annotation for each input. Protected/locked/VNS-anchor outpoints are excluded from automatic and manual coin selection. See [UTXO safety](docs/UTXO-SAFETY.md). The SDK cannot classify VNS anchors by itself; wallet clients must verify the VNS ownership registry before marking an input spendable.
 
 ## Important
 
