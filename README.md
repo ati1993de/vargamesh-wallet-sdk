@@ -27,7 +27,7 @@ const key = VargaMeshKey.generate();
 console.log(await key.address());
 
 const spend = await createSpend({
-  utxos: [{ txid: '...', vout: 0, valueSats: 100000000n }],
+  utxos: [{ txid: '...', vout: 0, valueSats: 100000000n, spendable: true }],
   destination: 'vm1...',
   amountSats: 1000000n,
   feeRateSatVb: 1n,
@@ -51,6 +51,10 @@ Run:
 npm test
 npm run verify:vectors
 ```
+
+## UTXO spend safety (breaking alpha change)
+
+Spending now requires an independently verified `spendable: true` annotation for each input. Protected/locked/VNS-anchor outpoints are excluded from automatic and manual coin selection. See [UTXO safety](docs/UTXO-SAFETY.md). The SDK cannot classify VNS anchors by itself; wallet clients must verify the VNS ownership registry before marking an input spendable.
 
 ## Important
 
